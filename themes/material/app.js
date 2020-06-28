@@ -606,7 +606,7 @@ function onSearchResultItemClick(a_ele) {
   $.post(`/${cur}:id2path`, {id: a_ele.id}, function (data) {
     if (data) {
       dialog.close();
-      var href = `/${cur}:${data}${can_preview ? : ''}`;
+      var href = `/${cur}:${data}`;
       dialog = mdui.dialog({
         title: '<i class="mdui-icon material-icons">&#xe815;</i>Target path',
         content: `<a href="${href}">${data}</a>`,
