@@ -5,7 +5,7 @@ document.write('<script src="//cdn.jsdelivr.net/npm/markdown-it@10.0.0/dist/mark
 document.write('<style>.mdui-appbar .mdui-toolbar{height:56px;font-size:1pc}.mdui-toolbar>*{padding:0 6px;margin:0 2px}.mdui-toolbar>i{opacity:.5}.mdui-toolbar>.mdui-typo-headline{padding:0 1pc 0 0}.mdui-toolbar>i{padding:0}.mdui-toolbar>a:hover,a.active,a.mdui-typo-headline{opacity:1}.mdui-container{max-width:980px}.mdui-list-item{transition:none}.mdui-list>.th{background-color:initial}.mdui-list-item>a{width:100%;line-height:3pc}.mdui-list-item{margin:2px 0;padding:0}.mdui-toolbar>a:last-child{opacity:1}@media screen and (max-width:980px){.mdui-list-item .mdui-text-right{display:none}.mdui-container{width:100%!important;margin:0}.mdui-toolbar>.mdui-typo-headline,.mdui-toolbar>a:last-child,.mdui-toolbar>i:first-child{display:block}}</style>');
 // add custome theme and darkmode
 if (UI.dark_mode) {
-  document.write(`<style>* {box-sizing: border-box}body{color:rgba(255,255,255,.87);background-color:#333232}.mdui-theme-primary-${UI.main_color} .mdui-color-theme{background-color:#232427!important}</style>`);
+  document.write(`<style>* {box-sizing: border-box}body{color:rgba(255,255,255,.87);background-color:#333232}.mdui-theme-primary-${UI.main_color} .mdui-color-theme{background-color:#232427!important} .mdui-textfield-expandable.mdui-textfield-expanded .mdui-textfield-input {color:white} .mdui-toolbar .mdui-icon {color:${UI.main_color}}<style>`);
 }
 
 // 初始化页面，并载入必要资源
@@ -81,7 +81,7 @@ function title(path) {
   // $('title').html(document.siteName + ' - ' + path);
   var model = window.MODEL;
   if (model.is_search_page)
-    $('title').html(`${document.siteName} - ${drive_name} - 搜索 ${model.q} 的结果`);
+    $('title').html(`${document.siteName} - ${drive_name} - Search results for ${model.q}`);
   else
     $('title').html(`${document.siteName} - ${drive_name} - ${path}`);
 }
@@ -588,7 +588,7 @@ function onSearchResultItemClick(a_ele) {
   var cur = window.current_drive_order;
   var dialog = mdui.dialog({
     title: '',
-    content: '<div class="mdui-text-center mdui-typo-title mdui-m-b-1">Getting target path...</div><div class="mdui-spinner mdui-spinner-colorful mdui-center"></div>',
+    content: '<div class="mdui-text-center mdui-typo-title mdui-m-b-1">Getting link...</div><div class="mdui-spinner mdui-spinner-colorful mdui-center"></div>',
     // content: '<div class="mdui-spinner mdui-spinner-colorful mdui-center"></div>',
     history: false,
     modal: true,
@@ -602,7 +602,7 @@ function onSearchResultItemClick(a_ele) {
       dialog.close();
       var href = `/${cur}:${data}`;
       dialog = mdui.dialog({
-        title: '<i class="mdui-icon material-icons">&#xe815;</i>Target path',
+        title: '<i class="mdui-icon material-icons">&#xe815;</i>Link to file',
         content: `<a href="${href}">${data}</a>`,
         history: false,
         modal: true,
@@ -615,7 +615,7 @@ function onSearchResultItemClick(a_ele) {
     }
     dialog.close();
     dialog = mdui.dialog({
-      title: '<i class="mdui-icon material-icons">&#xe811;</i>Failed to get the target path',
+      title: '<i class="mdui-icon material-icons">&#xe811;</i>Failed to get link',
       content: 'o(╯□╰)o It may be because this item does not exist in the disk! It may also be because the file [Shared with me] has not been added to Personal Drive!',
       history: false,
       modal: true,
