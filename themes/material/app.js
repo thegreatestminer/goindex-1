@@ -205,7 +205,7 @@ function list(path) {
 	     Date
 	    </div> 
 	    <div class="mdui-col-sm-2 mdui-text-right">
-	     Date
+	     Size
 	    </div> 
 	    </li> 
 	  </ul> 
